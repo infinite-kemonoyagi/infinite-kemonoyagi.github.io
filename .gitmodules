@@ -1,3 +1,6 @@
 [submodule "resources/images/gallery"]
 	path = resources/images/gallery
 	url = https://github.com/infinite-kemonoyagi/infinite-art.git
+[submodule "archived-versions"]
+	path = archived-versions
+	url = https://github.com/infinite-kemonoyagi/archived-old-website.git
