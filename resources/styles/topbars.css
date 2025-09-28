@@ -11,6 +11,8 @@ header
     background-color: #271f2281;
 
     height: 64px;
+    top: 0px; 
+    position: sticky; 
 }
 
 #social-bar
