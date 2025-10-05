@@ -26,8 +26,10 @@
         <link rel="icon" type="image/x-icon" href="/resources/images/icons/template icon.ico">
 
         <!-- Styles -->
-        <link rel="stylesheet" href="resources/styles/home.css">
         <link rel="stylesheet" href="resources/styles/topbars.css">
+        <link rel="stylesheet" href="resources/styles/home.css">
+        <link rel="stylesheet" href="resources/styles/home-content.css">
+        <link rel="stylesheet" href="resources/styles/home-decoration.css">
         <!-- end -->
 
         <!-- Scripts -->
@@ -37,6 +39,12 @@
     </head>
 
     <body>
+        <div id="decorative-element">
+            <img src="/resources/images/template/social-icons/infinite.png" alt="signature">
+            <br> <br>
+            <b> Infinite Kemonoyagi's portal </b>
+        </div>
+
         <header>
             <ul id="social-bar">
                 <div class="social-bar-element" id="infinite-button"> 
@@ -66,7 +74,7 @@
 
             <ul id="navigation-bar">
                 <div class="navigation-bar-element" id="home-button"> 
-                    <a href="index.html"> 
+                    <a href="/"> 
                         Home 
                     </a>
                 </div>
@@ -92,7 +100,50 @@
         </header>
 
         <main>
+            <div class="group">
+                <div class="content-group" id="information-group">
+                    <div class="content-group-title-background">
+                        <h2 class="content-group-title" id="information-group-title"> Information </h2>
+                    </div>
 
+                    <div class="content" id="information">
+                        <b> Hi!, I'm Infinite Kemoonyagi :3 </b> <br>
+                        <b> I use this website as a mirror of all my social medias </b>
+
+                        <div id="information-social">
+                            <div class="content-group-title-background">
+                                <h4 class="content-group-title" id="information-group-title"> My social medias </h4>
+                            </div>
+                            <ul>
+                                <li> 
+                                    <a href="https://infitsunexd.newgrounds.com/"> Newgrounds </a> 
+                                </li>
+                                <li> 
+                                    <a href="https://github.com/infinite-kemonoyagi"> Github </a>
+                                </li>
+                                <li> 
+                                    <a href="https://www.youtube.com/@infinite-kemonoyagi"> Youtube </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-group" id="news-group">
+                    <div class="content-group-title-background">
+                        <h2 class="content-group-title" id="news-group-title"> News </h2>
+                    </div>
+
+                    <div class="content" id="youtube-video-group">
+                        <div class="content-group-title-background">
+                            <h4 class="content-group-title" id="youtube-video-group-title"> Last video </h4>
+                        </div>
+
+                        <iframe id="youtube-video" width="360" height="240" allowfullscreen></iframe> 
+                        <a style="margin-left: 15px; color: rgb(34, 25, 41);" id="youtube-video-information"></a>
+                    </div>
+                </div>
+            </div>
         </main>
 
         <footer>
