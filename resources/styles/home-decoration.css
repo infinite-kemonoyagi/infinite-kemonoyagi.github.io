@@ -1,0 +1,35 @@
+#decorative-element
+{
+    position: fixed;
+    left: 65vw;
+    top: 50%;
+    transform: translate(50%, -50%);
+    justify-content: center;
+    align-items: center;
+
+    padding: 15px;
+
+    background-color: #806e92;
+    border-radius: 7px;
+    background-image: url("/resources/images/background/bgicon.png");
+    background-size: 32px;
+    background-blend-mode: color-dodge;
+    box-shadow: 0 4px 10px #806e92;
+}
+
+#decorative-element img
+{
+    width: 15vw;
+    border-radius: 100%;
+    box-shadow: 0 0px 10px rgba(31, 26, 32, 0.75);
+}
+
+#decorative-element b
+{
+    font-size: 18px;
+    background-color: #272127d2;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: rgb(255, 255, 255);
+    border-radius: 7px;
+}

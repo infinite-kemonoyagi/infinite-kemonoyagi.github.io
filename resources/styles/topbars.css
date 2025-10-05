@@ -1,29 +1,35 @@
 header
 {
-    margin: -6px;
-    padding: -6px;
-
+    margin: 6px;
     display: flex;
     list-style: none;
     align-items: center;
     justify-content: space-between;
 
-    background-color: #271f2281;
-
     height: 64px;
+    width: 95vw;
     top: 0px; 
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 5px;
+    padding-right: 5px;
     position: sticky; 
+
+    background-color: #cfc3cf8a;
+    border-radius: 7px;
+
+    box-shadow: 0 4px 10px #cfc3cf8a;
 }
 
 #social-bar
 {
     margin-right: 35px;
-    background-color: #ad87a687;
+    background-color: #ad87a6e8;
 }
 
 #navigation-bar
 {
-    background-color: #6a596987;
+    background-color: #6a5969e7;
 }
 
 #social-bar,
@@ -41,7 +47,7 @@ header
 
     border-radius: 0.5em;
     border-style: solid;
-    border-color: #342d34d2;
+    border-color: #342d34e5;
 }
 
 .social-bar-element,

@@ -1,0 +1,75 @@
+main
+{
+    width: 60vw;
+    height: 85vh;
+    background-color: #806e92;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 2.5vw;
+    padding: auto;
+    border-radius: 7px;
+
+    background-image: url("/resources/images/background/pat-night-background.webp");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-blend-mode: color-dodge;
+    background-attachment: fixed;
+
+    scroll-padding-left: 10px;
+    overflow-y: scroll;
+
+    box-shadow: 0 4px 10px #806e92;
+}
+
+main a
+{
+    text-decoration: none;
+    color: yellow;
+}
+
+main ul
+{
+    list-style: lower-alpha;
+}
+
+.group, .content-group
+{
+    align-items: flex;
+    flex-direction: row;
+}
+
+.content-group-title-background, .content
+{
+    width: 98%;
+    border-radius: 7px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.75);
+
+    margin-bottom: -5px;
+}
+
+.content-group-title-background
+{
+    background-color: #e4c1e488;
+    text-align: center;
+}
+
+.content-group-title, 
+.content h4
+.content h2
+{
+    color: rgb(29, 26, 28);
+    text-shadow: none;
+}
+
+.content
+{
+    background-color: #533a58d3;
+    color: white;
+    text-shadow:
+        -1px -1px 0 black,
+        1px -1px 0 black,
+        -1px  1px 0 black,
+        1px  1px 0 black;
+}
