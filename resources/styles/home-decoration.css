@@ -33,3 +33,11 @@
     color: rgb(255, 255, 255);
     border-radius: 7px;
 }
+
+@media (max-width: 1020px) 
+{
+    #decorative-element
+    {
+        visibility: hidden;
+    }
+}

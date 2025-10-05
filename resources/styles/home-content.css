@@ -2,7 +2,7 @@ main
 {
     width: 60vw;
     height: 85vh;
-    background-color: #806e92;
+    background-color: #6c6079;
     margin-top: auto;
     margin-bottom: auto;
     margin-left: 2.5vw;
@@ -10,10 +10,11 @@ main
     border-radius: 7px;
 
     background-image: url("/resources/images/background/pat-night-background.webp");
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     background-blend-mode: color-dodge;
     background-attachment: fixed;
+    background-position: center;
 
     scroll-padding-left: 10px;
     overflow-y: scroll;
@@ -65,11 +66,52 @@ main ul
 
 .content
 {
-    background-color: #533a58d3;
+    background-color: #533a58e3;
     color: white;
     text-shadow:
         -1px -1px 0 black,
         1px -1px 0 black,
         -1px  1px 0 black,
         1px  1px 0 black;
+}
+
+#youtube-video
+{
+    background-color: #473950;
+    border-style: none; 
+    border-radius: 7px; 
+    width: 45%;
+}
+
+#youtube-video-section
+{
+    background-color: #2b262ebd;
+    box-shadow: 0 4px 10px #000000;
+
+    width: 95%;
+    border-radius: 7px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 14px;
+
+    list-style-type:none;
+    display: flex; 
+}
+
+#youtube-video-link
+{
+    text-decoration: none; 
+    color: rgba(211, 196, 223, 1);
+}
+
+@media (max-width: 1020px) 
+{
+    main
+    {
+        width: 95vw;
+        position: fixed;
+        margin: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }
