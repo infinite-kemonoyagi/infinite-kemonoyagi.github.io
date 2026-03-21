@@ -1,6 +1,7 @@
 name: Bug
 description: Bug report.
 title: "Bug"
+labels: ["type: minor bug"]
 type: bug
 
 body:
