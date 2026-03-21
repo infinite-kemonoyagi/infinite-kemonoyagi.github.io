@@ -1,0 +1,36 @@
+name: Bug
+description: Bug report.
+title: "Bug"
+labels: ["type: minor bug"]
+
+body:
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Browser
+      description: which browser are you using the website on?
+      options:
+        - Chrome
+        - Firefox
+        - MicroSoft Edge
+        - Opera
+        - Safari
+        - Other (specify in the description field)
+    validations:
+      required: false
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: Describe us your bug
+      placeholder: "Describe your issue here... ex. i press some keys and suddenly the browser closes"
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps-reproduce
+    attributes:
+      label: Describe us the steps to reproduce it
+      placeholder: "1. go to the web site 2. press alt + f4"
+    validations:
+      required: true
