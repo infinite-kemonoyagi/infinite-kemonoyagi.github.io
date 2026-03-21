@@ -21,4 +21,7 @@ pnpm-debug.log*
 .DS_Store
 
 # jetbrains setting folder
+# this is kept if someone uses jetbrains
 .idea/
+
+.ignore/
