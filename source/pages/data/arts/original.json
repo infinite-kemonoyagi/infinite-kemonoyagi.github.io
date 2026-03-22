@@ -5,7 +5,8 @@
       {
         "image": "my-15th-birthday.png",
         "title": "My 15th Birthday",
-        "description": ""
+        "description": "",
+        "url": "my-15th-birthday"
       }
     ]
   },
@@ -15,7 +16,8 @@
       {
         "image": "boonee-bun-1.png",
         "title": "Boone Bun Art #1",
-        "description": ""
+        "description": "",
+        "url": "boonee-bun-1"
       }
     ]
   },
@@ -25,7 +27,8 @@
       {
         "image": "dragon-dog-1.png",
         "title": "Dragon Dog Art #1",
-        "description": ""
+        "description": "",
+        "url": "dragon-dog-1"
       }
     ]
   },
@@ -35,7 +38,8 @@
       {
         "image": "full-1.png",
         "title": "Feral Crimson Eclipse X",
-        "description": ""
+        "description": "",
+        "url": "full-1"
       }
     ]
   },
@@ -45,7 +49,8 @@
       {
         "image": "galobo.png",
         "title": "Galobo",
-        "description": ""
+        "description": "",
+        "url": "galobo"
       }
     ]
   },
@@ -55,7 +60,8 @@
       {
         "image": "guitty-1.png",
         "title": "Guitty Random Art #1",
-        "description": ""
+        "description": "",
+        "url": "guitty-1"
       }
     ]
   },
@@ -65,7 +71,8 @@
       {
         "image": "guitty-and-bajory.png",
         "title": "Guitty and Bajory Art #1",
-        "description": ""
+        "description": "",
+        "url": "guitty-and-bajory"
       }
     ]
   },
@@ -75,7 +82,8 @@
       {
         "image": "random-1.webp",
         "title": "Infinite Kemonoyagi Random Art #1",
-        "description": ""
+        "description": "",
+        "url": "random-1"
       }
     ]
   },
@@ -85,7 +93,8 @@
       {
         "image": "pat-night-remake-2025.webp",
         "title": "Pat Night Remake 2025",
-        "description": ""
+        "description": "",
+        "url": "pat-night-remake-2025"
       }
     ]
   },
@@ -95,7 +104,8 @@
       {
         "image": "raton-elegante-1.png",
         "title": "Raton Elegante Art #1",
-        "description": ""
+        "description": "",
+        "url": "raton-elegante-1"
       }
     ]
   },
@@ -105,17 +115,20 @@
       {
         "image": "sheeps-1.png",
         "title": "Sheeps Art #1",
-        "description": ""
+        "description": "",
+        "url": "sheeps-1"
       },
       {
         "image": "sheeps-1-remake-2025.webp",
         "title": "Sheeps #1 Remake 2025",
-        "description": ""
+        "description": "",
+        "url": "sheeps-1-remake-2025"
       },
       {
         "image": "sheeps-2.png",
         "title": "Sheeps Art #2",
-        "description": ""
+        "description": "",
+        "url": "sheeps-2"
       }
     ]
   }

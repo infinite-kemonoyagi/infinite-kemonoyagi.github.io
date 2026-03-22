@@ -5,7 +5,8 @@
       {
         "image": "fish-1.png",
         "title": "Fish banner",
-        "description": ""
+        "description": "",
+        "url": "fish-1"
       }
     ]
   },
@@ -15,7 +16,8 @@
       {
         "image": "konqi-fanart-1.webp",
         "title": "KDE Konqi Fanart #1",
-        "description": ""
+        "description": "",
+        "url": "konqi-fanart-1"
       }
     ]
   },
@@ -25,12 +27,14 @@
       {
         "image": "XREX-maga-original.png",
         "title": "Maruu Maga (Original version)",
-        "description": ""
+        "description": "",
+        "url": "XREX-maga-original"
       },
       {
         "image": "XREX-maga-remake.png",
         "title": "Maruu Maga (Remake version)",
-        "description": ""
+        "description": "",
+        "url": "XREX-maga-remake"
       }
     ]
   },
@@ -40,7 +44,8 @@
       {
         "image": "switch-2-dog",
         "title": "Switch 2 Dog Fanart",
-        "description": ""
+        "description": "",
+        "url": "switch-2-dog"
       }
     ]
   },
@@ -50,7 +55,8 @@
       {
         "image": "zeineth-1.png",
         "title": "Zeineth Fanart",
-        "description": ""
+        "description": "",
+        "url": "zeineth-1"
       }
     ]
   }
