@@ -1,0 +1,46 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import categories from '../../../pages/data/arts/categories.json';
+
+export async function getStaticPaths() {
+  const paths = [];
+
+  for (const category of categories) {
+    const charactersModule = await import(`../../../pages/data/arts/${category.url}.json`);
+    const characters = charactersModule.default;
+
+    for (const character of characters) {
+      for (const art of character.arts) {
+        paths.push({
+          params: {
+            category: category.category,
+            art: art.url
+          },
+          props: {category, character, art}
+        });
+      }
+    }
+  }
+
+  return paths;
+}
+
+const { category, character, art } = Astro.props;
+---
+
+<Layout>
+  <div>
+    <h1>{art.title}</h1>
+
+    <img
+      src={`/pages/arts/${category.url}/${character.character}/${art.image}`}
+      alt={art.title}
+
+      style="height: 55vh;"
+    />
+
+    <p>{art.description}</p>
+
+    <a href={`/arts/${category.category}`}> Back {category.title}</a>
+  </div>
+</Layout>
