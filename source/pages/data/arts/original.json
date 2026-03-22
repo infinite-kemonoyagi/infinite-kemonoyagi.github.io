@@ -1,0 +1,122 @@
+[
+  {
+    "character": "birthdays",
+    "arts": [
+      {
+        "image": "my-15th-birthday.png",
+        "title": "My 15th Birthday",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "character": "boonee-bun",
+    "arts": [
+      {
+        "image": "boonee-bun-1.png",
+        "title": "Boone Bun Art #1",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "character": "dragon-dog",
+    "arts": [
+      {
+        "image": "dragon-dog-1.png",
+        "title": "Dragon Dog Art #1",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "character": "feral-crimson-eclipse-x",
+    "arts": [
+      {
+        "image": "full-1.png",
+        "title": "Feral Crimson Eclipse X",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "character": "galobo",
+    "arts": [
+      {
+        "image": "galobo.png",
+        "title": "Galobo",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "character": "guitty",
+    "arts": [
+      {
+        "image": "guitty-1.png",
+        "title": "Guitty Random Art #1",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "character": "guitty-and-bajory",
+    "arts": [
+      {
+        "image": "guitty-and-bajory.png",
+        "title": "Guitty and Bajory Art #1",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "character": "infinite-kemonoyagi",
+    "arts": [
+      {
+        "image": "random-1.webp",
+        "title": "Infinite Kemonoyagi Random Art #1",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "character": "pat",
+    "arts": [
+      {
+        "image": "pat-night-remake-2025.webp",
+        "title": "Pat Night Remake 2025",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "character": "raton-elegante",
+    "arts": [
+      {
+        "image": "raton-elegante-1.png",
+        "title": "Raton Elegante Art #1",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "character": "sheeps",
+    "arts": [
+      {
+        "image": "sheeps-1.png",
+        "title": "Sheeps Art #1",
+        "description": ""
+      },
+      {
+        "image": "sheeps-1-remake-2025.webp",
+        "title": "Sheeps #1 Remake 2025",
+        "description": ""
+      },
+      {
+        "image": "sheeps-2.png",
+        "title": "Sheeps Art #2",
+        "description": ""
+      }
+    ]
+  }
+]
