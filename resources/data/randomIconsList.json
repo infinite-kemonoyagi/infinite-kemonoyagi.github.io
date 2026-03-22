@@ -1,5 +1,5 @@
 {
-  "infinite": "./images/icons/infinite.png",
-  "teresa-sheep": "./images/icons/teresa-sheep.png",
-  "dragon-dog": "./images/icons/dragon-dog.png"
+  "infinite": "/images/icons/infinite.png",
+  "teresa-sheep": "/images/icons/teresa-sheep.png",
+  "dragon-dog": "/images/icons/dragon-dog.png"
 }
