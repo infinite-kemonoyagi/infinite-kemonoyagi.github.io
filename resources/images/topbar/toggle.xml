@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-16"?>
+<TextureAtlas imagePath="toggle.png">
+	<!-- Created with Adobe Flash CS6 version 12.0.0.481 -->
+	<!-- http://www.adobe.com/products/flash.html -->
+	<SubTexture name="topbar toggle button0000" x="2" y="2" width="143" height="43"/>
+	<SubTexture name="topbar toggle button0001" x="2" y="2" width="143" height="43"/>
+	<SubTexture name="topbar toggle button0002" x="2" y="47" width="143" height="43"/>
+	<SubTexture name="topbar toggle button0003" x="2" y="47" width="143" height="43"/>
+</TextureAtlas>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-16"?>
+<TextureAtlas imagePath="infinite-kemonoyagi-portal.png">
+	<!-- Created with Adobe Flash CS6 version 12.0.0.481 -->
+	<!-- http://www.adobe.com/products/flash.html -->
+	<SubTexture name="Infinite Kemonoyagi Portal0000" x="2" y="2" width="329" height="137"/>
+	<SubTexture name="Infinite Kemonoyagi Portal0001" x="2" y="2" width="329" height="137"/>
+	<SubTexture name="Infinite Kemonoyagi Portal0002" x="2" y="141" width="329" height="137"/>
+	<SubTexture name="Infinite Kemonoyagi Portal0003" x="2" y="141" width="329" height="137"/>
+</TextureAtlas>
