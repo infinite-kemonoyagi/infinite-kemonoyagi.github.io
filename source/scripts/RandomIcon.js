@@ -2,7 +2,7 @@ const icon = document.getElementsByClassName(".page-icon").item(0);
 
 if (icon) {
   var icons = {};
-  await fetch("./data/randomIconsList.json")
+  await fetch("/data/randomIconsList.json")
     .then(a => a.json())
     .then(b => (icons = b))
     .catch(error => console.error(error));
