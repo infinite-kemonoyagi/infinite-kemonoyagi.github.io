@@ -36,6 +36,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Initialize Submodules
+        run: |
+          git submodule init
+          git submodule update
+
       - name: Detect package manager
         id: detect-package-manager
         run: |
