@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Original arts",
+    "category": "original",
+    "url": "original"
+  },
+  {
+    "title": "Fan arts",
+    "category": "fan-arts",
+    "url": "fan-arts"
+  },
+  {
+    "title": "Character references",
+    "category": "references",
+    "url": "references"
+  }
+]

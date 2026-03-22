@@ -1,0 +1,35 @@
+[
+  {
+    "character": "boonee-bun",
+    "arts": [
+      {
+        "image": "1-2025.png",
+        "title": "Boonee Bun references 2025",
+        "description": "",
+        "url": "boonee-bun-reference-1"
+      }
+    ]
+  },
+  {
+    "character": "infinite-kemonoyagi",
+    "arts": [
+      {
+        "image": "1-2024.png",
+        "title": "Infinite Kemonoyagi references 2024",
+        "description": "",
+        "url": "infinite-reference-1"
+      }
+    ]
+  },
+  {
+    "character": "pat",
+    "arts": [
+      {
+        "image": "1-2025.png",
+        "title": "Pat references 2025",
+        "description": "",
+        "url": "pat-reference-1"
+      }
+    ]
+  }
+]

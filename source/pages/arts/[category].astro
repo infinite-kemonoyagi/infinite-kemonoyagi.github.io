@@ -1,0 +1,46 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+import categories from '../../pages/data/arts/categories.json';
+export function getStaticPaths() {
+  return categories.map(category => ({
+    params: { category: category.category },
+    props: { category: category }
+  }));
+}
+const { category } = Astro.props;
+
+type CharacterInfo = [
+  {
+    "character":String,
+    "arts":
+    {
+      "image":String,
+      "title":String,
+      "description":String,
+      "url":String
+    }[]
+  }
+]
+
+const characters:CharacterInfo = (await import(`../../pages/data/arts/${category.url}.json`)).default;
+---
+
+<Layout>
+
+  <h1>{category.title}</h1>
+
+  {
+    characters.map(character => character.arts.map(art => (
+      <li>
+        <a href={`/arts/${category.category}/${art.url}`}>
+        {art.title}
+        </a>
+      </li>
+    )))
+  }
+  <br>
+
+  <a href="/arts"> Back </a>
+
+</Layout>

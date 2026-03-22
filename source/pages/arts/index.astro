@@ -1,0 +1,27 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+import categories from '../../pages/data/arts/categories.json';
+---
+
+<Layout>
+
+  <a href="/"> Home </a>
+	<br> <br>
+
+  Hello, welcome to the arts section
+  <br> <br>
+
+  <ul class="art-categories">
+    {
+      categories.map((category) => (
+        <li>
+          <a href={`/arts/${category.category}`}>
+            {category.title}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+</Layout>

@@ -1,0 +1,3 @@
+[submodule "resources/pages/arts"]
+	path = resources/pages/arts
+	url = https://github.com/infinite-kemonoyagi/infinite-kemonoyagi.art.git

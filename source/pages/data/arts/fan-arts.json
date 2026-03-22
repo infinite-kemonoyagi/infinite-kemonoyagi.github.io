@@ -1,0 +1,63 @@
+[
+  {
+    "character": "fish",
+    "arts": [
+      {
+        "image": "fish-1.png",
+        "title": "Fish banner",
+        "description": "",
+        "url": "fish-1"
+      }
+    ]
+  },
+  {
+    "character": "kde-konqi",
+    "arts": [
+      {
+        "image": "konqi-fanart-1.webp",
+        "title": "KDE Konqi Fanart #1",
+        "description": "",
+        "url": "konqi-fanart-1"
+      }
+    ]
+  },
+  {
+    "character": "maruu",
+    "arts": [
+      {
+        "image": "XREX-maga-original.png",
+        "title": "Maruu Maga (Original version)",
+        "description": "",
+        "url": "XREX-maga-original"
+      },
+      {
+        "image": "XREX-maga-remake.png",
+        "title": "Maruu Maga (Remake version)",
+        "description": "",
+        "url": "XREX-maga-remake"
+      }
+    ]
+  },
+  {
+    "character": "switch-2",
+    "arts": [
+      {
+        "image": "switch-2-dog",
+        "title": "Switch 2 Dog Fanart",
+        "description": "",
+        "url": "switch-2-dog"
+      }
+    ]
+  },
+  {
+    "character": "zeineth",
+    "arts": [
+      {
+        "image": "zeineth-1.png",
+        "title": "Zeineth Fanart",
+        "description": "",
+        "url": "zeineth-1"
+      }
+    ]
+  }
+]
