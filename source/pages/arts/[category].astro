@@ -4,15 +4,15 @@ import Layout from '../../layouts/Layout.astro';
 import categories from '../../pages/data/arts/categories.json';
 export function getStaticPaths() {
   return categories.map(category => ({
-    params: { slug: category.slug },
-    props: { post: category }
+    params: { slug: category.category },
+    props: { category: category }
   }));
 }
-const { post } = Astro.props;
+const { category } = Astro.props;
 ---
 
 <Layout>
 
-  <h1>{post.title}</h1>
+  <h1>{category.title}</h1>
 
 </Layout>

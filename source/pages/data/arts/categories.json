@@ -1,17 +1,17 @@
 [
   {
     "title": "Original arts",
-    "slug": "original",
+    "category": "original",
     "url": "original"
   },
   {
     "title": "Fan arts",
-    "slug": "fan-arts",
+    "category": "fan-arts",
     "url": "fan-arts"
   },
   {
     "title": "Character references",
-    "slug": "references",
+    "category": "references",
     "url": "references"
   }
 ]
