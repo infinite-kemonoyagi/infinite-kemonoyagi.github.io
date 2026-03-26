@@ -1,0 +1,19 @@
+---
+interface Props {
+  id?:String;
+}
+
+const {id} = Astro.props;
+---
+
+<div class="_content-container" id={`${id}`}>
+  <slot></slot>
+  <br>
+</div>
+
+<style is:global>
+  ._content-container {
+    opacity: 1.0;
+    font-size: x-large;
+  }
+</style>

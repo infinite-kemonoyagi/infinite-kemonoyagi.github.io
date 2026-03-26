@@ -1,0 +1,293 @@
+---
+import SparrowAtlas from './visual/SparrowAtlas.astro';
+
+interface Props {
+  currentPage:string;
+}
+
+const {currentPage} = Astro.props;
+---
+
+<nav id="_topbar">
+  <div class="_topbar-button" id="infinite-button-header">
+    <a href="/">
+      <SparrowAtlas
+        id="infinite-button"
+        imageSource="/images/buttons/infinite-kemonoyagi-portal.png"
+        xmlSource="/images/buttons/infinite-kemonoyagi-portal.xml"
+        tex="Infinite Kemonoyagi Portal"
+        width={329}
+        height={137}
+        fps={0}
+        loop={false}
+      >
+    </a>
+  </div>
+
+  <div class="_topbar-button" id="pages-button-header">
+    <SparrowAtlas
+      id="pages-button"
+      imageSource="/images/buttons/pages.png"
+      xmlSource="/images/buttons/pages.xml"
+      tex="pages button"
+      width={159}
+      height={79}
+      fps={0}
+      loop={false}
+    >
+  </div>
+
+  <div class="_topbar-right-group">
+    <div class="_topbar-button" id="socials-button-header">
+      <SparrowAtlas
+        id="socials-button"
+        imageSource="/images/buttons/socials.png"
+        xmlSource="/images/buttons/socials.xml"
+        tex="socials button"
+        width={190}
+        height={79}
+        fps={0}
+        loop={false}
+      >
+    </div>
+
+    <div class="_topbar-button" id="source-code-button-header">
+      <a href="https://github.com/infinite-kemonoyagi/infinite-kemonoyagi.github.io">
+        <SparrowAtlas
+          id="source-code-button"
+          imageSource="/images/buttons/source-code.png"
+          xmlSource="/images/buttons/source-code.xml"
+          tex="source code button"
+          width={71}
+          height={72}
+          fps={0}
+          loop={false}
+        >
+      </a>
+    </div>
+
+    <div class="_topbar-button" id="information-button-header">
+      <SparrowAtlas
+        id="information-button"
+        imageSource="/images/buttons/information.png"
+        xmlSource="/images/buttons/information.xml"
+        tex="information button"
+        width={71}
+        height={72}
+        fps={0}
+        loop={false}
+      >
+    </div>
+  </div>
+
+  <div class="_topbar-bottom">
+    <div class="_topbar-button" id="toggle-topbar">
+      <SparrowAtlas
+        id="toggle-topbar-button"
+        imageSource="/images/topbar/toggle.png"
+        xmlSource="/images/topbar/toggle.xml"
+        tex="topbar toggle button"
+        width={143}
+        height={43}
+        fps={0}
+        loop={false}
+      >
+    </div>
+  </div>
+
+</nav>
+
+<div id="_topbar-spacer" style="height: 135px;"></div>
+
+<style is:global>
+  #_topbar {
+    position: fixed;
+    top: 0px;
+    background-image: url("/images/topbar/background.png");
+    height: 135px;
+    width: 100vw;
+
+    align-items: center;
+    display: flex;
+
+    overflow: hidden;
+  }
+
+  ._topbar-button {
+    padding-right: 5px;
+
+    flex-shrink: 0;
+  }
+
+  ._topbar-right-group {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-right: 10px;
+  }
+
+  ._topbar-bottom {
+    position: fixed;
+    display: inline;
+    margin: auto;
+    transform: translateY(130%);
+    width: 100vw;
+  }
+
+  #toggle-topbar {
+    width: min-content;
+    margin: auto;
+  }
+
+  #socials-button-header {
+    padding-left: 145px;
+  }
+
+  #information-button-header {
+    margin-left: auto;
+    padding-right: 10px;
+    padding-left: 45px;
+  }
+</style>
+
+<script defer>
+
+  let interval = null;
+  let isHidden = false;
+
+  const container = document.getElementById("_topbar");
+  const spacer = document.getElementById("_topbar-spacer");
+
+  function updateSpacer(container) {
+    var height = getSpacerHeight(container);
+    spacer.style.height = `${height}`;
+  }
+
+  function getSpacerHeight(container) {
+    var topbarHeight = container.clientHeight;
+    return topbarHeight;
+  }
+
+  window.addEventListener("sparrow-atlas-canvas-ready", (e) => {
+    const sparrowAtlas = window.SparrowAtlasManager.current;
+    let name = "";
+
+    switch (e.detail.id) {
+      case "infinite-button":
+        name = "infinite-button";
+        break;
+
+      case "pages-button":
+        name = "pages-button";
+        break;
+
+      case "socials-button":
+        name = "socials-button";
+        break;
+
+      case "source-code-button":
+        name = "source-code-button";
+        break;
+
+      case "information-button":
+        name = "information-button";
+        break;
+
+      case "toggle-topbar-button":
+        name = "toggle-topbar-button";
+        updateSpacer(container);
+        break;
+
+      default:
+        return;
+    }
+    sparrowAtlas.stored.get(name).addEventListener("mouseover", (e) => {
+      sparrowAtlas.goToFrame(name, 2);
+
+      if (name !== "infinite-button" || name !== "source-code-button") {
+        sparrowAtlas.stored.get(name).style.cursor = "pointer";
+      }
+    });
+    sparrowAtlas.stored.get(name).addEventListener("mouseout", (e) => {
+      sparrowAtlas.goToFrame(name, 0);
+    });
+    sparrowAtlas.stored.get(name).addEventListener("click", () => {
+      switch (name) {
+        case "pages-button":
+          // something
+          break;
+
+        case "socials-button":
+          // something
+          break;
+
+        case "information-button":
+          // something
+          break;
+
+        case "toggle-topbar-button":
+          isHidden = !isHidden
+          if (isHidden) hide(container, sparrowAtlas.stored.get(name));
+          else show(container, sparrowAtlas.stored.get(name));
+          break;
+
+        default:
+          return;
+      }
+    });
+  });
+
+  /**
+   * @param {HTMLElement} element
+   * @param {HTMLElement} toggle
+   */
+  function hide(element, toggle) {
+    clearInterval(interval);
+    interval = setInterval(frame, 10);
+
+    var y = parseFloat(getComputedStyle(element).top);
+    var defaultHeight = parseFloat(getComputedStyle(container).height);
+    element.style.position = "fixed";
+    element.style.top = `${y}px`;
+
+    var topbarHeight = element.clientHeight;
+    var toggleHeight = toggle.clientHeight;
+    var height = topbarHeight - toggleHeight + 15;
+
+    function frame() {
+      if (y <= -height) {
+        clearInterval(interval);
+      } else {
+        y += (-height - y) * 0.2;
+        spacer.style.height = `${defaultHeight + (y / 2)}px`;
+        element.style.top = `${y}px`;
+      }
+    }
+  }
+  /**
+   * @param {HTMLElement} element
+   */
+  function show(element) {
+    clearInterval(interval);
+    interval = setInterval(frame, 10);
+
+    var y = parseFloat(getComputedStyle(element).top);
+    var defaultHeight = getSpacerHeight(element);
+    var spacerHeight = parseFloat(getComputedStyle(spacer).height);
+    element.style.position = "fixed";
+    element.style.top = `${y}px`;
+
+    function frame() {
+      if (y >= 0 && spacerHeight >= defaultHeight) {
+        clearInterval(interval);
+      } else {
+        y += -y * 0.2;
+        spacerHeight += (defaultHeight - spacerHeight) * 0.2
+        element.style.top = `${y}px`;
+        spacer.style.height = `${spacerHeight}px`;
+      }
+    }
+  }
+
+</script>

@@ -1,24 +1,24 @@
+---
+import Topbar from "../components/Topbar.astro";
+---
+
 <!doctype html>
 
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" href="./images/icons/infinite.png" class=".page-icon" />
+		<link rel="icon" href="/images/icons/infinite.png" class=".page-icon" />
 		<meta name="generator" content={Astro.generator} />
 		<script src="/source/scripts/RandomIcon.js"></script>
+
+		<link rel="stylesheet" href="/styles/main.css">
 
 		<title> Infinite Kemonoyagi's Portal </title>
 	</head>
 	<body>
+		<Topbar currentPage="home"></Topbar>
+
 		<slot />
 	</body>
 </html>
-
-<style>
-	html, body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

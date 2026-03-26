@@ -1,4 +1,6 @@
 ---
+import Content from '../../components/Content.astro';
+import ContentGroup from '../../components/ContentGroup.astro';
 import Layout from '../../layouts/Layout.astro';
 
 import categories from '../../pages/data/arts/categories.json';
@@ -6,22 +8,26 @@ import categories from '../../pages/data/arts/categories.json';
 
 <Layout>
 
-  <a href="/"> Home </a>
-	<br> <br>
+  <ContentGroup>
 
-  Hello, welcome to the arts section
-  <br> <br>
+    <Content>
+      <h2> Hello, welcome to the arts section </h2>
+    </Content>
 
-  <ul class="art-categories">
-    {
-      categories.map((category) => (
-        <li>
-          <a href={`/arts/${category.category}`}>
-            {category.title}
-          </a>
-        </li>
-      ))
-    }
-  </ul>
+    <Content>
+      <ul class="art-categories">
+        {
+          categories.map((category) => (
+            <li>
+              <a href={`/arts/${category.category}`}>
+                {category.title}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </Content>
+
+  </ContentGroup>
 
 </Layout>

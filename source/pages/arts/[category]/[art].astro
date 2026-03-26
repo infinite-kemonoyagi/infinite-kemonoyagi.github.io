@@ -1,4 +1,6 @@
 ---
+import Content from '../../../components/Content.astro';
+import ContentGroup from '../../../components/ContentGroup.astro';
 import Layout from '../../../layouts/Layout.astro';
 import categories from '../../../pages/data/arts/categories.json';
 
@@ -29,18 +31,47 @@ const { category, character, art } = Astro.props;
 ---
 
 <Layout>
-  <div>
-    <h1>{art.title}</h1>
+
+  <ContentGroup id="_art-page">
+
+    <div>
+      <Content>
+        <a href={`/arts/${category.category}`}> Back </a>
+      </Content>
+
+      <Content>
+        <h2> {art.title} </h2>
+      </Content>
+
+      <Content>
+        <p>{art.description}</p>
+      </Content>
+    </div>
 
     <img
+      id="art-image"
       src={`/pages/arts/${category.url}/${character.character}/${art.image}`}
       alt={art.title}
-
-      style="height: 55vh;"
     />
 
-    <p>{art.description}</p>
+  </ContentGroup>
 
-    <a href={`/arts/${category.category}`}> Back {category.title}</a>
-  </div>
 </Layout>
+
+<style is:global>
+  #_art-page {
+    display: flex;
+  }
+
+  #art-image-cover {
+    width: min-content;
+    height: min-content;
+  }
+
+  #art-image {
+    margin-top: auto;
+		margin-bottom: auto;
+		margin-left: auto;
+    height: 65vh;
+  }
+</style>
