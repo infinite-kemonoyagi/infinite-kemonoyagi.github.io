@@ -1,9 +1,59 @@
 ---
+import Content from '../components/Content.astro';
+import ContentGroup from '../components/ContentGroup.astro';
+import Topbar from '../components/Topbar.astro';
 import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
 
-	
+	<Topbar currentPage="home"></Topbar>
+
+	<div id="_main-content">
+		<ContentGroup>
+			<Content>
+				Hello, I'm Infinite Kemonoyagi :3
+				<br>
+				I love code and draw cute and weird things xd
+				<br> <br>
+
+				I'm developing some cool games right now like:
+				<strong> Unlucky dog </strong>
+				<strong> The Goats Of The Rock </strong>
+				<br>
+				Webseries like:
+				<strong> Pat's World </strong>
+				<br>
+				and more
+			</Content>
+
+			<Content>
+				Look my cool art here: <a href="/arts"> Arts </a>
+				<br>
+			</Content>
+		</ContentGroup>
+
+		<img id="spectator" src="/images/spectator/infinite kemonoyagi.png" alt="Infinite Kemonoyagi, IKY">
+	</div>
+
 
 </Layout>
+
+<style>
+	#_main-content {
+		align-items: center;
+    display: flex;
+
+    overflow: hidden;
+
+		height: calc(100vh - 135px);
+	}
+
+	#spectator {
+		margin-top: auto;
+		margin-bottom: auto;
+		margin-left: auto;
+    padding-right: 25px;
+		height: 75vh;
+	}
+</style>
