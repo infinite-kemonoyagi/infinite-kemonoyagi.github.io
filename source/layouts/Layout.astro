@@ -1,3 +1,7 @@
+---
+import Topbar from "../components/Topbar.astro";
+---
+
 <!doctype html>
 
 <html lang="en">
@@ -13,6 +17,8 @@
 		<title> Infinite Kemonoyagi's Portal </title>
 	</head>
 	<body>
+		<Topbar currentPage="home"></Topbar>
+
 		<slot />
 	</body>
 </html>
