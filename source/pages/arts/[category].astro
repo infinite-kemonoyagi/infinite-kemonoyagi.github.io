@@ -1,4 +1,6 @@
 ---
+import Content from '../../components/Content.astro';
+import ContentGroup from '../../components/ContentGroup.astro';
 import Layout from '../../layouts/Layout.astro';
 
 import categories from '../../pages/data/arts/categories.json';
@@ -28,19 +30,30 @@ const characters:CharacterInfo = (await import(`../../pages/data/arts/${category
 
 <Layout>
 
-  <h1>{category.title}</h1>
+  <ContentGroup>
 
-  {
-    characters.map(character => character.arts.map(art => (
-      <li>
-        <a href={`/arts/${category.category}/${art.url}`}>
-        {art.title}
-        </a>
-      </li>
-    )))
-  }
-  <br>
+    <Content>
+      <a href="/arts"> Back </a>
+    </Content>
 
-  <a href="/arts"> Back </a>
+    <Content>
+      <h2> {category.title} </h2>
+    </Content>
+
+    <Content>
+      <ul class="art-list">
+        {
+          characters.map(character => character.arts.map(art => (
+            <li>
+              <a href={`/arts/${category.category}/${art.url}`}>
+              {art.title}
+              </a>
+            </li>
+          )))
+        }
+      </ul>
+    </Content>
+
+  </ContentGroup>
 
 </Layout>
