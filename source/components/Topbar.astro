@@ -99,6 +99,18 @@ const {currentPage} = Astro.props;
 
 <div id="_topbar-spacer" style="height: 135px;"></div>
 
+<ul id="topbar-menu-context">
+
+  <li class="topbar-menu-elements" id="arts-page">
+    <a href="/arts"> Arts </a>
+  </li>
+
+  <li class="topbar-menu-elements" id="archived-page">
+    <a href="/archived-old-website"> Archived old version </a>
+  </li>
+
+</ul>
+
 <style is:global>
   #_topbar {
     position: fixed;
@@ -111,6 +123,44 @@ const {currentPage} = Astro.props;
     display: flex;
 
     overflow: hidden;
+  }
+
+  #topbar-menu-context {
+    position: absolute;
+    top: 0px;
+
+    padding: 15px;
+    width: max-content;
+
+    background: #a48e9a;
+    border: 3px solid black;
+    border-radius: 7px;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .topbar-menu-elements {
+    background: rgb(77, 49, 69);
+    border: 2px solid black;
+    border-radius: 7px;
+
+    margin-bottom: 15px;
+
+    width: 190px;
+    height: max-content;
+    list-style: none;
+  }
+  .topbar-menu-elements::after {
+    margin-bottom: 0;
+  }
+
+  .topbar-menu-elements a {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin-left: 5px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
   }
 
   ._topbar-button {
@@ -154,10 +204,19 @@ const {currentPage} = Astro.props;
 <script defer>
 
   let interval = null;
+  let contextMenuInterval = null;
   let isHidden = false;
 
   const container = document.getElementById("_topbar");
   const spacer = document.getElementById("_topbar-spacer");
+
+  const contextMenu = document.getElementById("topbar-menu-context");
+  let contextMenuValues = [];
+
+  const buttonPressed = new Map();
+  let lastButtonPressedName = "";
+  let lastButtonPressed;
+  let lastButtonSparrow;
 
   function updateSpacer(container) {
     var height = getSpacerHeight(container);
@@ -210,16 +269,17 @@ const {currentPage} = Astro.props;
       }
     });
     sparrowAtlas.stored.get(name).addEventListener("mouseout", (e) => {
-      sparrowAtlas.goToFrame(name, 0);
+      if (!buttonPressed.get(name)) sparrowAtlas.goToFrame(name, 0);
     });
     sparrowAtlas.stored.get(name).addEventListener("click", () => {
       switch (name) {
         case "pages-button":
-          // something
+          closeContextMenu(true);
+          openContextMenu(name, sparrowAtlas.stored.get(name), sparrowAtlas);
           break;
-
         case "socials-button":
-          // something
+          closeContextMenu(true);
+          openContextMenu(name, sparrowAtlas.stored.get(name), sparrowAtlas);
           break;
 
         case "information-button":
@@ -289,5 +349,105 @@ const {currentPage} = Astro.props;
       }
     }
   }
+
+  /**
+   * @param {String} name
+   * @param {HTMLElement} element
+   */
+  async function openContextMenu(name, element, buttonSparrow) {
+    buttonPressed.set(name, true);
+
+    lastButtonPressed = element;
+    lastButtonSparrow = buttonSparrow;
+
+    lastButtonPressedName = name;
+
+    const realName = name.replace("-button", "");
+    const rect = element.getBoundingClientRect();
+
+    await fetch(`/data/topbar/${realName}.json`)
+      .then(a => a.json())
+      .then(b => (contextMenuValues = b))
+      .catch(error => console.error(error));
+
+    if (contextMenu.innerHTML !== "") contextMenu.innerHTML = "";
+
+    console.log(contextMenuValues);
+
+    for (const object of contextMenuValues) {
+      contextMenu.innerHTML += `<li class="topbar-menu-elements" id="${object.id}">
+        <a href="${object.url}"> ${object.name} </a>
+      </li>`;
+    }
+
+    contextMenu.style.left = `${rect.left}px`;
+    contextMenu.style.top = `${rect.top}px`;
+    contextMenu.style.visibility = "visible";
+    let top = rect.top;
+    const topDest = rect.bottom;
+    let opacity = 0.0;
+    contextMenu.style.opacity = `${opacity}`;
+
+    clearInterval(contextMenuInterval);
+    contextMenuInterval = setInterval(frame, 10);
+
+    function frame() {
+      if (top == topDest && opacity == 1.0) {
+        clearInterval(contextMenuInterval);
+      } else {
+        top += (topDest - top) * 0.06;
+        opacity += (1 - opacity) * 0.06;
+        contextMenu.style.top = `${top}px`;
+        contextMenu.style.opacity = `${opacity}`;
+      }
+    }
+  }
+
+  /**
+   * @param {bool} fast
+   */
+  function closeContextMenu(fast) {
+    if (lastButtonPressedName === "") return;
+
+    buttonPressed.set(lastButtonPressedName, false);
+
+    if (lastButtonSparrow) {
+      lastButtonSparrow.goToFrame(lastButtonPressedName, 0);
+      lastButtonSparrow = null;
+    }
+    lastButtonPressedName = "";
+
+    let top = parseFloat(contextMenu.style.top);
+    let opacity = parseFloat(contextMenu.style.opacity);
+
+    clearInterval(contextMenuInterval);
+
+    if (fast) {
+      contextMenu.style.opacity = "0";
+      contextMenu.style.visibility = "hidden";
+      return;
+    }
+
+    contextMenuInterval = setInterval(frame, 10);
+    function frame() {
+      top *= 1.005;
+      opacity += -opacity * 0.1;
+      contextMenu.style.top = `${top}px`;
+      contextMenu.style.opacity = `${opacity}`;
+      if (opacity.toFixed(2) == 0) {
+        contextMenu.style.visibility = "hidden";
+        clearInterval(contextMenuInterval);
+      }
+    }
+  }
+
+  document.addEventListener("click", (e) => {
+    if (lastButtonPressedName === "") return;
+
+    const clickedInsideMenu = contextMenu.contains(e.target);
+    const clickedButton = lastButtonSparrow && lastButtonPressed.contains(e.target);
+
+    if (!clickedInsideMenu && !clickedButton) closeContextMenu(false);
+  });
 
 </script>
