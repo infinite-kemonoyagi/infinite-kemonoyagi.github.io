@@ -15,7 +15,9 @@ const { id, imageSource, xmlSource, tex, width = 100, height = 100, fps = 24, lo
 
 <canvas class="frame-atlas" id={`${id}`} width={width} height={height}></canvas>
 
-<script src="/source/scripts/SparrowAtlasManager.ts" defer></script>
+<script>
+  import '/source/scripts/SparrowAtlasManager.ts';
+</script>
 
 <script is:inline define:vars={{ imageSource, xmlSource, frameName: tex, id, fps, loop, autoplay }} defer>
   async function load() {
