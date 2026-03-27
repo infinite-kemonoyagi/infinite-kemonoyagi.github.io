@@ -1,10 +1,17 @@
 ---
 import Topbar from "../components/Topbar.astro";
+
+interface Props {
+  currentPage?:String;
+}
+
+const {currentPage} = Astro.props;
 ---
 
 <!doctype html>
 
 <html lang="en">
+
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
@@ -15,10 +22,15 @@ import Topbar from "../components/Topbar.astro";
 		<link rel="stylesheet" href="/styles/main.css">
 
 		<title> Infinite Kemonoyagi's Portal </title>
+
+		<meta property="og:title" content="Infinite Kemonoyagi's Portal">
+		<meta property="og:image" content="/images/icons/infinite.png">
 	</head>
+
 	<body>
-		<Topbar currentPage="home"></Topbar>
+		<Topbar currentPage={`${currentPage}`}></Topbar>
 
 		<slot />
 	</body>
+
 </html>
