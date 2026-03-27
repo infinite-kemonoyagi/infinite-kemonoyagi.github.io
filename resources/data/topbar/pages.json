@@ -1,0 +1,12 @@
+[
+  {
+    "id": "arts-page",
+    "name": "Arts",
+    "url": "/arts/"
+  },
+  {
+    "id": "archived-page",
+    "name": "Archived old version",
+    "url": "/archived-old-website/"
+  }
+]

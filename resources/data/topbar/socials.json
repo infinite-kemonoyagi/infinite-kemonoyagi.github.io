@@ -1,0 +1,17 @@
+[
+  {
+    "id": "newground-social",
+    "name": "Newgrounds",
+    "url": "https://infinite-kemonoyagi.newgrounds.com/"
+  },
+  {
+    "id": "youtube-social",
+    "name": "Youtube",
+    "url": "https://www.youtube.com/@iky.infinite-kemonoyagi"
+  },
+  {
+    "id": "github-social",
+    "name": "Github",
+    "url": "https://github.com/infinite-kemonoyagi"
+  }
+]

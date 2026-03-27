@@ -1,10 +1,20 @@
 ---
 import Topbar from "../components/Topbar.astro";
+import SparrowAtlas from "../components/visual/SparrowAtlas.astro";
+
+import Changelog from "../pages/data/changelog.markdown";
+
+interface Props {
+  currentPage?:String;
+}
+
+const {currentPage} = Astro.props;
 ---
 
 <!doctype html>
 
 <html lang="en">
+
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
@@ -15,10 +25,108 @@ import Topbar from "../components/Topbar.astro";
 		<link rel="stylesheet" href="/styles/main.css">
 
 		<title> Infinite Kemonoyagi's Portal </title>
+
+		<meta property="og:title" content="Infinite Kemonoyagi's Portal">
+		<meta property="og:image" content="/images/icons/infinite.png">
 	</head>
+
 	<body>
-		<Topbar currentPage="home"></Topbar>
+
+		<Topbar currentPage={`${currentPage}`}></Topbar>
 
 		<slot />
+
+		<div id="_information-parent">
+			<div id="_information-background"></div>
+
+			<div id="_information-container">
+
+				<div id="_information-content" style="background: #57444e">
+					<SparrowAtlas
+						id="infinite-kemonoyagi-portal-information"
+						imageSource="/images/buttons/infinite-kemonoyagi-portal.png"
+						xmlSource="/images/buttons/infinite-kemonoyagi-portal.xml"
+						tex="Infinite Kemonoyagi Portal"
+						width={329}
+						height={137}
+						fps={0}
+						loop={false}
+					></SparrowAtlas>
+				</div>
+
+				<div id="_information-content">
+					<h2> Version 1.0.0 </h2>
+				</div>
+
+				<div id="_information-content">
+					<h3> Information </h3>
+					<p>
+						Check out news about my projects and (obviously)
+						see my weird art, animations, webseries and play my cool games... IF I EVEN HAVE SOMETHING...
+						oh yeah, already i have one game for the moment XD.
+					</p>
+				</div>
+
+				<div id="_information-content">
+					<h1> Changelog </h1>
+					<Changelog></Changelog>
+				</div>
+
+			</div>
+		</div>
+
+		<script defer>
+			const informationParent = document.getElementById("_information-parent");
+			const informationBackground = document.getElementById("_information-background");
+			const informationContainer = document.getElementById("_information-container");
+			let infiniteIcon;
+
+			let informationInterval = null;
+
+			resizeContainer();
+			window.addEventListener("resize", (_) => resizeContainer());
+
+			function resizeContainer()
+			{
+				const containerWidth = informationContainer.offsetWidth;
+				const containerHeight = informationContainer.offsetHeight;
+
+				informationContainer.style.left = `calc(50% - ${(containerWidth / 2)}px)`;
+				informationContainer.style.top = `calc(50% - ${(containerHeight / 2)}px)`;
+			}
+
+			window.addEventListener("sparrow-atlas-canvas-ready", e => {
+				const sparrowAtlas = window.SparrowAtlasManager.current;
+				const name = e.detail.id;
+				infiniteIcon = sparrowAtlas.stored.get(name);
+				if (name === "infinite-kemonoyagi-portal-information") {
+					sparrowAtlas.goToFrame(name, 2);
+				}
+			});
+
+			informationBackground.addEventListener("click", e => {
+				clearInterval(informationInterval);
+				informationInterval = setInterval(frame, 10);
+
+				const containerStyle = window.getComputedStyle(informationContainer);
+
+				var opacity = parseFloat(containerStyle.opacity);
+
+				function frame()
+				{
+					opacity += -opacity * 0.05;
+
+					informationContainer.style.opacity = `${opacity}`;
+					informationBackground.style.opacity = `${opacity * 0.5}`;
+
+					if (opacity.toFixed(1) <= 0) {
+						informationParent.style.visibility = "hidden";
+						clearInterval(informationInterval);
+					}
+				}
+			});
+		</script>
+
 	</body>
+
 </html>

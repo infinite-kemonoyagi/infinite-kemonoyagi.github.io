@@ -20,7 +20,7 @@ const {currentPage} = Astro.props;
         height={137}
         fps={0}
         loop={false}
-      >
+      ></SparrowAtlas>
     </a>
   </div>
 
@@ -34,7 +34,7 @@ const {currentPage} = Astro.props;
       height={79}
       fps={0}
       loop={false}
-    >
+    ></SparrowAtlas>
   </div>
 
   <div class="_topbar-right-group">
@@ -48,7 +48,7 @@ const {currentPage} = Astro.props;
         height={79}
         fps={0}
         loop={false}
-      >
+      ></SparrowAtlas>
     </div>
 
     <div class="_topbar-button" id="source-code-button-header">
@@ -62,7 +62,7 @@ const {currentPage} = Astro.props;
           height={72}
           fps={0}
           loop={false}
-        >
+        ></SparrowAtlas>
       </a>
     </div>
 
@@ -76,7 +76,7 @@ const {currentPage} = Astro.props;
         height={72}
         fps={0}
         loop={false}
-      >
+      ></SparrowAtlas>
     </div>
   </div>
 
@@ -91,13 +91,25 @@ const {currentPage} = Astro.props;
         height={43}
         fps={0}
         loop={false}
-      >
+      ></SparrowAtlas>
     </div>
   </div>
 
 </nav>
 
 <div id="_topbar-spacer" style="height: 135px;"></div>
+
+<ul id="topbar-menu-context">
+
+  <li class="topbar-menu-elements" id="arts-page">
+    <a href="/arts"> Arts </a>
+  </li>
+
+  <li class="topbar-menu-elements" id="archived-page">
+    <a href="/archived-old-website"> Archived old version </a>
+  </li>
+
+</ul>
 
 <style is:global>
   #_topbar {
@@ -111,6 +123,44 @@ const {currentPage} = Astro.props;
     display: flex;
 
     overflow: hidden;
+  }
+
+  #topbar-menu-context {
+    position: absolute;
+    top: 0px;
+
+    padding: 15px;
+    width: max-content;
+
+    background: #a48e9a;
+    border: 3px solid black;
+    border-radius: 7px;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .topbar-menu-elements {
+    background: rgb(77, 49, 69);
+    border: 2px solid black;
+    border-radius: 7px;
+
+    margin-bottom: 15px;
+
+    width: 190px;
+    height: max-content;
+    list-style: none;
+  }
+  .topbar-menu-elements::after {
+    margin-bottom: 0;
+  }
+
+  .topbar-menu-elements a {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin-left: 5px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
   }
 
   ._topbar-button {
@@ -153,18 +203,27 @@ const {currentPage} = Astro.props;
 
 <script defer>
 
-  let interval = null;
-  let isHidden = false;
+  let topbarInterval = null;
+  let contextMenuInterval = null;
+  let topbarIsHidden = false;
 
-  const container = document.getElementById("_topbar");
-  const spacer = document.getElementById("_topbar-spacer");
+  const topbarContainer = document.getElementById("_topbar");
+  const topbarSpacer = document.getElementById("_topbar-spacer");
 
-  function updateSpacer(container) {
-    var height = getSpacerHeight(container);
-    spacer.style.height = `${height}`;
+  const topbarContextMenu = document.getElementById("topbar-menu-context");
+  let topbarContextMenuValues = [];
+
+  const topbarButtonPressed = new Map();
+  let lastTBButtonPressedName = "";
+  let lastTBButtonPressed;
+  let lastTBButtonSparrow;
+
+  function updateTopbarSpacer(container) {
+    var height = getTopbarSpacerHeight(container);
+    topbarSpacer.style.height = `${height}`;
   }
 
-  function getSpacerHeight(container) {
+  function getTopbarSpacerHeight(container) {
     var topbarHeight = container.clientHeight;
     return topbarHeight;
   }
@@ -196,7 +255,7 @@ const {currentPage} = Astro.props;
 
       case "toggle-topbar-button":
         name = "toggle-topbar-button";
-        updateSpacer(container);
+        updateTopbarSpacer(topbarContainer);
         break;
 
       default:
@@ -210,26 +269,27 @@ const {currentPage} = Astro.props;
       }
     });
     sparrowAtlas.stored.get(name).addEventListener("mouseout", (e) => {
-      sparrowAtlas.goToFrame(name, 0);
+      if (!topbarButtonPressed.get(name)) sparrowAtlas.goToFrame(name, 0);
     });
     sparrowAtlas.stored.get(name).addEventListener("click", () => {
       switch (name) {
         case "pages-button":
-          // something
+          closeTopbarContextMenu(true);
+          openTopbarContextMenu(name, sparrowAtlas.stored.get(name), sparrowAtlas);
           break;
-
         case "socials-button":
-          // something
+          closeTopbarContextMenu(true);
+          openTopbarContextMenu(name, sparrowAtlas.stored.get(name), sparrowAtlas);
           break;
 
         case "information-button":
-          // something
+          openInformation();
           break;
 
         case "toggle-topbar-button":
-          isHidden = !isHidden
-          if (isHidden) hide(container, sparrowAtlas.stored.get(name));
-          else show(container, sparrowAtlas.stored.get(name));
+          topbarIsHidden = !topbarIsHidden
+          if (topbarIsHidden) hideTopbar(topbarContainer, sparrowAtlas.stored.get(name));
+          else showTopbar(topbarContainer, sparrowAtlas.stored.get(name));
           break;
 
         default:
@@ -242,12 +302,12 @@ const {currentPage} = Astro.props;
    * @param {HTMLElement} element
    * @param {HTMLElement} toggle
    */
-  function hide(element, toggle) {
-    clearInterval(interval);
-    interval = setInterval(frame, 10);
+  function hideTopbar(element, toggle) {
+    clearInterval(topbarInterval);
+    topbarInterval = setInterval(frame, 10);
 
     var y = parseFloat(getComputedStyle(element).top);
-    var defaultHeight = parseFloat(getComputedStyle(container).height);
+    var defaultHeight = parseFloat(getComputedStyle(topbarContainer).height);
     element.style.position = "fixed";
     element.style.top = `${y}px`;
 
@@ -257,10 +317,10 @@ const {currentPage} = Astro.props;
 
     function frame() {
       if (y <= -height) {
-        clearInterval(interval);
+        clearInterval(topbarInterval);
       } else {
         y += (-height - y) * 0.2;
-        spacer.style.height = `${defaultHeight + (y / 2)}px`;
+        topbarSpacer.style.height = `${defaultHeight + (y / 2)}px`;
         element.style.top = `${y}px`;
       }
     }
@@ -268,26 +328,148 @@ const {currentPage} = Astro.props;
   /**
    * @param {HTMLElement} element
    */
-  function show(element) {
-    clearInterval(interval);
-    interval = setInterval(frame, 10);
+  function showTopbar(element) {
+    clearInterval(topbarInterval);
+    topbarInterval = setInterval(frame, 10);
 
     var y = parseFloat(getComputedStyle(element).top);
-    var defaultHeight = getSpacerHeight(element);
-    var spacerHeight = parseFloat(getComputedStyle(spacer).height);
+    var defaultHeight = getTopbarSpacerHeight(element);
+    var spacerHeight = parseFloat(getComputedStyle(topbarSpacer).height);
     element.style.position = "fixed";
     element.style.top = `${y}px`;
 
     function frame() {
       if (y >= 0 && spacerHeight >= defaultHeight) {
-        clearInterval(interval);
+        clearInterval(topbarInterval);
       } else {
         y += -y * 0.2;
         spacerHeight += (defaultHeight - spacerHeight) * 0.2
         element.style.top = `${y}px`;
-        spacer.style.height = `${spacerHeight}px`;
+        topbarSpacer.style.height = `${spacerHeight}px`;
       }
     }
   }
+
+  /**
+   * @param {String} name
+   * @param {HTMLElement} element
+   */
+  async function openTopbarContextMenu(name, element, buttonSparrow) {
+    topbarButtonPressed.set(name, true);
+
+    lastTBButtonPressed = element;
+    lastTBButtonSparrow = buttonSparrow;
+
+    lastTBButtonPressedName = name;
+
+    const realName = name.replace("-button", "");
+    const rect = element.getBoundingClientRect();
+
+    await fetch(`/data/topbar/${realName}.json`)
+      .then(a => a.json())
+      .then(b => (topbarContextMenuValues = b))
+      .catch(error => console.error(error));
+
+    if (topbarContextMenu.innerHTML !== "") topbarContextMenu.innerHTML = "";
+
+    console.log(topbarContextMenuValues);
+
+    for (const object of topbarContextMenuValues) {
+      topbarContextMenu.innerHTML += `<li class="topbar-menu-elements" id="${object.id}">
+        <a href="${object.url}"> ${object.name} </a>
+      </li>`;
+    }
+
+    topbarContextMenu.style.left = `${rect.left}px`;
+    topbarContextMenu.style.top = `${rect.top}px`;
+    topbarContextMenu.style.visibility = "visible";
+    let top = rect.top;
+    const topDest = rect.bottom;
+    let opacity = 0.0;
+    topbarContextMenu.style.opacity = `${opacity}`;
+
+    clearInterval(contextMenuInterval);
+    contextMenuInterval = setInterval(frame, 10);
+
+    function frame() {
+      if (top == topDest && opacity == 1.0) {
+        clearInterval(contextMenuInterval);
+      } else {
+        top += (topDest - top) * 0.06;
+        opacity += (1 - opacity) * 0.06;
+        topbarContextMenu.style.top = `${top}px`;
+        topbarContextMenu.style.opacity = `${opacity}`;
+      }
+    }
+  }
+
+  /**
+   * @param {bool} fast
+   */
+  function closeTopbarContextMenu(fast) {
+    if (lastTBButtonPressedName === "") return;
+
+    topbarButtonPressed.set(lastTBButtonPressedName, false);
+
+    if (lastTBButtonSparrow) {
+      lastTBButtonSparrow.goToFrame(lastTBButtonPressedName, 0);
+      lastTBButtonSparrow = null;
+    }
+    lastTBButtonPressedName = "";
+
+    let top = parseFloat(topbarContextMenu.style.top);
+    let opacity = parseFloat(topbarContextMenu.style.opacity);
+
+    clearInterval(contextMenuInterval);
+
+    if (fast) {
+      topbarContextMenu.style.opacity = "0";
+      topbarContextMenu.style.visibility = "hidden";
+      return;
+    }
+
+    contextMenuInterval = setInterval(frame, 10);
+    function frame() {
+      top *= 1.005;
+      opacity += -opacity * 0.1;
+      topbarContextMenu.style.top = `${top}px`;
+      topbarContextMenu.style.opacity = `${opacity}`;
+      if (opacity.toFixed(2) == 0) {
+        topbarContextMenu.style.visibility = "hidden";
+        clearInterval(contextMenuInterval);
+      }
+    }
+  }
+
+  function openInformation() {
+    informationContainer.style.opacity = `0`;
+		informationBackground.style.opacity = `0`;
+		informationParent.style.visibility = `visible`;
+
+    let opacity = 0.0;
+
+    clearInterval(informationInterval);
+    informationInterval = setInterval(frame, 10);
+
+    function frame() {
+      opacity += (1 - opacity) * 0.1;
+
+      informationContainer.style.opacity = `${opacity}`;
+			informationBackground.style.opacity = `${opacity * 0.5}`;
+
+      if (opacity.toFixed(2) == 0) {
+        clearInterval(informationInterval);
+      }
+    }
+  }
+
+  document.addEventListener("click", (e) => {
+    if (lastTBButtonPressedName === "") return;
+
+    const clickedInsideMenu = topbarContextMenu.contains(e.target);
+    const clickedButton = lastTBButtonSparrow && lastTBButtonPressed.contains(e.target);
+
+    if (!clickedInsideMenu && !clickedButton) closeTopbarContextMenu(false);
+  });
 
 </script>

@@ -28,7 +28,7 @@ type CharacterInfo = [
 const characters:CharacterInfo = (await import(`../../pages/data/arts/${category.url}.json`)).default;
 ---
 
-<Layout>
+<Layout currentPage="arts">
 
   <ContentGroup>
 
