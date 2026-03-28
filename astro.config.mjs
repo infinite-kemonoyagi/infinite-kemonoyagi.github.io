@@ -7,9 +7,4 @@ export default defineConfig({
   publicDir: "resources",
 
   site: "https://infinite-kemonoyagi.github.io/",
-
-  build: {
-    format: "file",
-    assets: "resources",
-  },
 });
