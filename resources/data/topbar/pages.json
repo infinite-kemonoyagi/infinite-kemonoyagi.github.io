@@ -5,6 +5,11 @@
     "url": "/arts/"
   },
   {
+    "id": "games-page",
+    "name": "Games",
+    "url": "/games/"
+  },
+  {
     "id": "archived-page",
     "name": "Archived old version",
     "url": "/archived-old-website/"
